@@ -16,8 +16,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
     "@shuke~/logger": "1.2.7",
-    "@shuke~/request": "^0.0.0",
-    "@zd~/request": "^0.4.0",
+    "@shuke~/request": "^0.0.3",
     "axios": "^1.9.0",
     "element-plus": "^2.8.8",
     "pinia": "^2.2.4",

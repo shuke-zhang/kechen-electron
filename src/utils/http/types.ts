@@ -1,3 +1,5 @@
+import type { AxiosRequestConfig } from "axios";
+
 export interface UserCustomConfig {
   /**
    * 是否携带token
@@ -10,5 +12,19 @@ export interface UserCustomConfig {
   /**
    * 是否取消重复请求
    */
-  isCancelRepeatRequest?: boolean;
+  ignoreRepeatRequest?: boolean;
+  /**
+   *  token 键名
+   */
+  tokenKey?: string;
+  /**
+   * token 键值
+   */
+  tokenKeyScheme?: string;
+}
+
+
+
+export interface Canceler {
+  (message?: string, config?: AxiosRequestConfig, request?: any): void;
 }

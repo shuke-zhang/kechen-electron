@@ -77,6 +77,15 @@ export default [
       semi: 'error', // 强制要求每一行使用分号
       'no-unused-vars': 'off', // 是用于检测代码中定义了但未使用的变量的规则。如果启用该规则，当有未使用的变量时，ESLint 会报错或警告。
       'no-undef': 'off', // 用于检测代码中使用了未定义的变量。当在代码中使用了未定义的变量时，ESLint 会抛出错误。
+      '@typescript-eslint/no-unused-vars': [
+        'error', // 启用 TypeScript 的未使用变量检查
+        {
+          argsIgnorePattern: '^_', // 忽略以 _ 开头的参数
+          varsIgnorePattern: '^_', // 忽略以 _ 开头的变量
+          caughtErrorsIgnorePattern: '^_', // 忽略以 _ 开头的 catch 错误变量（如 _e）
+        },
+      ],
+      '@typescript-eslint/no-explicit-any': 'off', // 用于禁止使用 any 类型。当在代码中使用 any 类型时，ESLint 会抛出警告。
       'vue/multi-word-component-names': 'off', // 允许单词命名组件 - 如果开启当使用了一个单词命名组件时会在script标签上报错Component name "eslint" should always be multi-word.
       'vue/attributes-order': 'error',
       'import/no-dynamic-require': 'warn', // require其中的参数不能是变量或表达式，必须是一个静态字符串 require('./someModule')
