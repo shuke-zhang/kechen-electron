@@ -1,14 +1,15 @@
 
-import type { UserCustomConfig } from './types';
+import type { ResponseResult, UserCustomConfig } from './types';
 
 import { getCacheToken } from '../cache';
-import { HttpRequest, RequestMethodsEnum } from '@shuke~/request';
+import { showMessageError } from '../ui';
+import { getSystemErrorMessage, handleError, HttpRequest, RequestMethodsEnum, type HttpRequestConfig } from '@shuke~/request';
 // import { RequestMethodsEnum } from '@shuke~/request/dist/shared.js';
 import axios, { type AxiosRequestConfig, type Canceler } from 'axios';
 
 const request = new HttpRequest<UserCustomConfig>(
   {
-    baseURL: import.meta.env.VITE_APP_BASE_API,
+    baseURL: import.meta.env.VITE_API_URL,
     timeout: 20 * 1000,
     withToken: true,
     joinTime: true,
@@ -40,6 +41,35 @@ const request = new HttpRequest<UserCustomConfig>(
       }
 
       return config;
+    },
+    // 请求拦截器错误
+    requestError(e) {
+      // 处理请求错误
+      console.log(e, 'requestError');
+    },
+    // 响应拦截器
+    async response(_response) {
+      cancelMap.delete(generateKey(_response.config));
+      const config = _response.config as HttpRequestConfig<UserCustomConfig>;
+      // 返回原生响应
+      if (config.getResponse) {
+        return _response;
+      }
+      const responseData = _response.data as ResponseResult<object>;
+
+      if (responseData.code === 200) {
+        return responseData as any;
+      }
+
+      if (responseData.code === 401) {
+        // 返回登录页
+
+      }
+
+      const msg = responseData.msg || getSystemErrorMessage(responseData.code);
+      return handleError(msg, (showMessageError(msg) as any) || (() => {
+        console.log(msg);
+      }), responseData.code !== 401 && !config?.showMessageError);
     },
 
   }

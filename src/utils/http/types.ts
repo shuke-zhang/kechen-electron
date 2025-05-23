@@ -21,6 +21,10 @@ export interface UserCustomConfig {
    * token 键值
    */
   tokenKeyScheme?: string;
+  /**
+   * 是否开启响应错误提示
+   */
+  showMessageError?: boolean;
 }
 
 
@@ -28,3 +32,10 @@ export interface UserCustomConfig {
 export interface Canceler {
   (message?: string, config?: AxiosRequestConfig, request?: any): void;
 }
+
+export type ResponseResult<T extends object = object> = {
+  code: number
+  status: number
+  msg: string
+  message: string
+} & T
