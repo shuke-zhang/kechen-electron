@@ -89,6 +89,21 @@
     "watch": true,
     "watchEffect": true,
     "watchPostEffect": true,
-    "watchSyncEffect": true
+    "watchSyncEffect": true,
+    "cancelInterceptor": true,
+    "clearCacheToken": true,
+    "confirmError": true,
+    "confirmInfo": true,
+    "confirmSuccess": true,
+    "confirmWarning": true,
+    "generateKey": true,
+    "getCacheToken": true,
+    "removeCacheToken": true,
+    "request": true,
+    "setCacheToken": true,
+    "showMessageError": true,
+    "showMessageInfo": true,
+    "showMessageSuccess": true,
+    "showMessageWarning": true
   }
 }

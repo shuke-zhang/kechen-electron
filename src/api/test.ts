@@ -1,4 +1,3 @@
-import { request } from "@/utils/http";
 
 export function testApi() { }
 export function getCodeImg() {
