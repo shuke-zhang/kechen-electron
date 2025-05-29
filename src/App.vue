@@ -1,7 +1,5 @@
 <script setup lang="ts">
-
-
-
+const sss = 123;
 </script>
 
 <template>
